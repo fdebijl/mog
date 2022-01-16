@@ -25,7 +25,7 @@
   "scripts": {
     "start": "node index.js",
     "compile": "tsc",
-    "lint": "eslint \"./src/**/*.ts\" --max-warnings 2",
+    "lint": "eslint \"./src/**/*.ts\" --max-warnings 20",
     "test": "jasmine-ts --config=jasmine.config.json",
     "prepare": "tsc",
     "prepublishOnly": "npm run lint && npm test"

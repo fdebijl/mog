@@ -1,6 +1,6 @@
 # Mog
 
-Opionated mini-ODM and collection of MongoDB utils. Mostly for use in my own projects but you might find it useful as a boilerplate CRM for small projects.
+Opionated mini-ODM and collection of MongoDB utils. Mostly for use in my own projects but you might find it useful as a boilerplate ODM for small projects.
 
 ### Installation:
 ```

@@ -39,6 +39,8 @@
     "mongodb": "4.2.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "@types/jasmine": "3.10.2",
     "@types/node": "13.13.52",
     "@typescript-eslint/eslint-plugin": "5.3.1",

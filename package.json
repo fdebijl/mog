@@ -1,5 +1,5 @@
 {
-  "name": "mog",
+  "name": "@fdebijl/mog",
   "version": "0.0.1",
   "description": "Opionated mini-ODM and collection of MongoDB utils 🔧",
   "main": "dist/index.js",

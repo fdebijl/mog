@@ -77,7 +77,7 @@ export class Mog {
     this._beforeEach({ name: 'get', query, options});
 
     const collection = options.collection ?? this.collection as string;
-    return this.db.collection(collection).findOne<T>(query);
+    return this.db.collection(collection).findOne<T>(query, options);
   }
 
   /**

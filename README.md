@@ -12,6 +12,7 @@ Recommended usage is to have a file that exports a single instance of mog for us
 
 TS:
 ```ts
+// mog.ts
 import { Mog } from '@fdebijl/mog';
 
 export const mog = new Mog({
@@ -20,6 +21,11 @@ export const mog = new Mog({
   appName: 'Sample app',
   defaultCollection: 'users'
 });
+
+// other-file.ts
+import { mog } from './mog';
+
+const user = await mog.get<User>({id: '125919258'});
 ```
 
 JS:

@@ -1,6 +1,35 @@
-# TypeScript BoilerPlate
-A small boilerplate I use for personal TS projects 📝
+# Mog
 
-Go [here](https://github.com/Fdebijl/tsbp/generate) to generate a new repo based on this boilerplate, or click the 'Use this template' button above.
+Opionated mini-ODM and collection of MongoDB utils. Mostly for use in my own projects but you might find it useful as a boilerplate CRM for small projects.
 
-Once you've cloned or downloaded the repo, simply run `npm run setup` to setup the project.
+### Installation:
+```
+npm install -S @fdebijl/mog
+```
+
+### Usage:
+Recommended usage is to have a file that exports a single instance of mog for use across an entire project. Simply import the configured instance of Mog in other files to use any of the exposed operations.
+
+TS:
+```ts
+import { Mog } from '@fdebijl/mog';
+
+export const mog = new Mog({
+  url: 'mongodb://mongodb0.example.com:27017',
+  db: 'sample',
+  appName: 'Sample app',
+  defaultCollection: 'users'
+});
+```
+
+JS:
+```js
+const { Mog } = require('@fdebijl/mog');
+
+export const mog = new Mog({
+  url: 'mongodb://mongodb0.example.com:27017',
+  db: 'sample',
+  appName: 'Sample app',
+  defaultCollection: 'users'
+});
+```

@@ -1,6 +1,7 @@
 {
   "extends": [
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jasmine/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -26,6 +27,10 @@
     "prefer-const": 1
   },
   "env": {
-    "node": true
-  }
+    "node": true,
+    "jasmine": true
+  },
+  "plugins": [
+    "jasmine"
+  ]
 }

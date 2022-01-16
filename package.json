@@ -1,26 +1,50 @@
 {
-	"private": true,
-	"scripts": {
-		"start": "node index.js",
+  "name": "mog",
+  "version": "0.0.1",
+  "description": "Opionated mini-ODM and collection of MongoDB utils",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fdebijl/mog.git"
+  },
+  "author": {
+    "name": "Floris de Bijl",
+    "email": "npm@debijl.xyz"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fdebijl/mog/issues"
+  },
+  "homepage": "https://github.com/fdebijl/mog#readme",
+  "release": {
+    "analyzeCommits": "semantic-release-conventional-commits"
+  },
+  "scripts": {
+    "start": "node index.js",
     "compile": "tsc",
-    "presetup": "npm ci",
     "lint": "eslint \"./src/**/*.ts\" --max-warnings 2",
-		"setup": "ts-node tsbp.setup.ts",
-		"postsetup": "shx rm tsbp.setup.ts && npm uninstall @types/inquirer @types/npm chalk inquirer replace-in-file shx && npm install"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@types/inquirer": "7.3.3",
-		"@types/node": "13.13.52",
-		"@types/npm": "2.0.32",
-		"@typescript-eslint/eslint-plugin": "5.3.1",
-		"@typescript-eslint/parser": "5.3.1",
-		"chalk": "4.1.2",
-		"eslint": "8.2.0",
-		"inquirer": "8.2.0",
-		"replace-in-file": "6.3.2",
-		"shx": "0.3.3",
-		"ts-node": "9.1.1",
-		"typescript": "4.4.4"
-	}
+    "test": "jasmine-ts --config=jasmine.config.json",
+    "prepare": "tsc",
+    "prepublishOnly": "npm run lint && npm test"
+  },
+  "dependencies": {
+    "@fdebijl/clog": "^1.105.0",
+    "mongodb": "4.2.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "3.10.2",
+    "@types/node": "13.13.52",
+    "@typescript-eslint/eslint-plugin": "5.3.1",
+    "@typescript-eslint/parser": "5.3.1",
+    "eslint": "8.2.0",
+    "eslint-plugin-jasmine": "4.1.2",
+    "jasmine": "3.10.0",
+    "jasmine-spec-reporter": "7.0.0",
+    "jasmine-ts": "0.4.0",
+    "ts-node": "9.1.1",
+    "typescript": "4.4.4"
+  }
 }

@@ -1,7 +1,7 @@
 {
   "name": "mog",
   "version": "0.0.1",
-  "description": "Opionated mini-ODM and collection of MongoDB utils",
+  "description": "Opionated mini-ODM and collection of MongoDB utils 🔧",
   "main": "dist/index.js",
   "files": [
     "dist/**/*"
@@ -31,7 +31,7 @@
     "prepublishOnly": "npm run lint && npm test"
   },
   "dependencies": {
-    "@fdebijl/clog": "^1.105.0",
+    "@fdebijl/clog": "1.105.0",
     "mongodb": "4.2.0"
   },
   "devDependencies": {
@@ -44,6 +44,7 @@
     "jasmine": "3.10.0",
     "jasmine-spec-reporter": "7.0.0",
     "jasmine-ts": "0.4.0",
+    "semantic-release-conventional-commits": "3.0.0",
     "ts-node": "9.1.1",
     "typescript": "4.4.4"
   }

@@ -1,8 +1,9 @@
-import { MongoClient, Db, Filter, Document, WithId, InsertManyResult, InsertOneResult } from 'mongodb';
+import { MongoClient, Db, Filter, Document, WithId, InsertManyResult, InsertOneResult, DeleteResult, UpdateResult } from 'mongodb';
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
 import fs from 'fs';
 
-import { Attachment, InsertOptions, MogOptions, OperationOptions, GetOptions, Operation } from './domain';
+import { Attachment, InsertOptions, MogOptions, OperationOptions, GetOptions, Operation, UpdateOptions } from './domain';
+import { CountOptions } from './domain/type/CountOptions';
 
 const mogVersion = JSON.parse(fs.readFileSync('package.json', 'utf-8')).version as string;
 
@@ -104,24 +105,36 @@ export class Mog {
     }
   }
 
-  update(query: Filter<Document>, document: Document, options: OperationOptions) {
-    throw new Error('Not implemented');
+  update(query: Filter<Document>, document: Document, options: UpdateOptions): Promise<Document | UpdateResult> {
     this._beforeEach({ name: 'update', query, document, options });
 
     const collection = options.collection ?? this.collection as string;
+    if (Array.isArray(document)) {
+      return this.db.collection(collection).updateMany(query, { $set: document }, { upsert: options.upsert });
+    } else {
+      return this.db.collection(collection).updateOne(query, { $set: document }, { upsert: options.upsert });
+    }
   }
 
-  delete(query: Filter<Document>, options: OperationOptions) {
-    throw new Error('Not implemented');
+  delete(query: Filter<Document>, options: OperationOptions): Promise<DeleteResult> {
     this._beforeEach({ name: 'delete', query, options });
 
     const collection = options.collection ?? this.collection as string;
+    if (Array.isArray(document)) {
+      return this.db.collection(collection).deleteMany(query);
+    } else {
+      return this.db.collection(collection).deleteOne(query);
+    }
   }
 
-  count(query: Filter<Document>, options: OperationOptions) {
-    throw new Error('Not implemented');
+  count(query: Filter<Document>, options: CountOptions): Promise<number> {
     this._beforeEach({ name: 'count', query, options });
 
     const collection = options.collection ?? this.collection as string;
+    if (options.fast) {
+      return this.db.collection(collection).estimatedDocumentCount();
+    } else {
+      return this.db.collection(collection).countDocuments(query);
+    }
   }
 }

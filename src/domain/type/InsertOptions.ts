@@ -1,4 +1,3 @@
 import { OperationOptions } from "./OperationOptions";
 
-export type InsertOptions = OperationOptions & {
-}
+export type InsertOptions = OperationOptions;

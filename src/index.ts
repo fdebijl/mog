@@ -90,7 +90,7 @@ export class Mog {
     this._beforeEach({ name: 'list', query, options });
 
     const collection = options.collection ?? this.collection as string;
-    return this.db.collection(collection).find<T>(query).toArray();
+    return this.db.collection(collection).find<T>(query, options).toArray();
   }
 
   /**
@@ -100,7 +100,7 @@ export class Mog {
     this._beforeEach({ name: 'cursor', query, options });
 
     const collection = options.collection ?? this.collection as string;
-    return this.db.collection(collection).find<T>(query);
+    return this.db.collection(collection).find<T>(query, options);
   }
 
   /**

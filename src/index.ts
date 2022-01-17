@@ -1,4 +1,4 @@
-import { MongoClient, Db, Filter, Document, WithId, InsertManyResult, InsertOneResult, DeleteResult, UpdateResult } from 'mongodb';
+import { MongoClient, Db, Filter, Document, WithId, InsertManyResult, InsertOneResult, DeleteResult, UpdateResult, FindCursor } from 'mongodb';
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
 import fs from 'fs';
 
@@ -89,6 +89,16 @@ export class Mog {
 
     const collection = options.collection ?? this.collection as string;
     return this.db.collection(collection).find<T>(query).toArray();
+  }
+
+  /**
+   * Return a cursor with all documents that match the given query. Return cursor type is determined by type parameter T.
+   */
+  cursor<T = WithId<Document>>(query: Filter<Document>, options: ListOptions): FindCursor<T> {
+    this._beforeEach({ name: 'cursor', query, options });
+
+    const collection = options.collection ?? this.collection as string;
+    return this.db.collection(collection).find<T>(query);
   }
 
   /**

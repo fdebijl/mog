@@ -2,7 +2,7 @@ import { MongoClient, Db, Filter, Document, WithId, InsertManyResult, InsertOneR
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
 import fs from 'fs';
 
-import { Attachment, InsertOptions, MogOptions, OperationOptions, GetOptions, Operation, UpdateOptions } from './domain';
+import { Attachment, InsertOptions, MogOptions, OperationOptions, GetOptions, Operation, UpdateOptions, ListOptions } from './domain';
 import { CountOptions } from './domain/type/CountOptions';
 
 const mogVersion = JSON.parse(fs.readFileSync('package.json', 'utf-8')).version as string;
@@ -82,9 +82,9 @@ export class Mog {
   }
 
   /**
-   * List all documents that match the given query. Return type is determined by type parameter T.
+   * List all documents that match the given query. Return array type is determined by type parameter T.
    */
-  list<T = WithId<Document>>(query: Filter<Document>, options: OperationOptions): Promise<T[]> {
+  list<T = WithId<Document>>(query: Filter<Document>, options: ListOptions): Promise<T[]> {
     this._beforeEach({ name: 'list', query, options });
 
     const collection = options.collection ?? this.collection as string;

@@ -1,4 +1,5 @@
 export * from './CountOptions';
+export * from './DeleteOptions';
 export * from './GetOptions';
 export * from './InsertOptions';
 export * from './ListOptions';

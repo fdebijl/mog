@@ -2,7 +2,7 @@ import { MongoClient, Db, Filter, Document, WithId, InsertManyResult, InsertOneR
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
 import fs from 'fs';
 
-import { Attachment, InsertOptions, MogOptions, OperationOptions, GetOptions, Operation, UpdateOptions, ListOptions, CountOptions } from './domain';
+import { Attachment, InsertOptions, MogOptions, OperationOptions, DeleteOptions, GetOptions, Operation, UpdateOptions, ListOptions, CountOptions } from './domain';
 
 const mogVersion = JSON.parse(fs.readFileSync('package.json', 'utf-8')).version as string;
 
@@ -128,11 +128,11 @@ export class Mog {
     }
   }
 
-  delete(query: Filter<Document>, options: OperationOptions): Promise<DeleteResult> {
+  delete(query: Filter<Document>, options: DeleteOptions): Promise<DeleteResult> {
     this._beforeEach({ name: 'delete', query, options });
 
     const collection = options.collection ?? this.collection as string;
-    if (Array.isArray(document)) {
+    if (options.many) {
       return this.db.collection(collection).deleteMany(query);
     } else {
       return this.db.collection(collection).deleteOne(query);

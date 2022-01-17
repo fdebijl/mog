@@ -2,8 +2,7 @@ import { MongoClient, Db, Filter, Document, WithId, InsertManyResult, InsertOneR
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
 import fs from 'fs';
 
-import { Attachment, InsertOptions, MogOptions, OperationOptions, GetOptions, Operation, UpdateOptions, ListOptions } from './domain';
-import { CountOptions } from './domain/type/CountOptions';
+import { Attachment, InsertOptions, MogOptions, OperationOptions, GetOptions, Operation, UpdateOptions, ListOptions, CountOptions } from './domain';
 
 const mogVersion = JSON.parse(fs.readFileSync('package.json', 'utf-8')).version as string;
 
@@ -28,7 +27,10 @@ export class Mog {
     });
 
     try {
-      this.db = this.client.db(options.db, options.dbOptions);
+      this.db = this.client.db();
+      this.client.connect().then(() => {
+        this.db = this.client.db(options.db, options.dbOptions);
+      });
     } catch (error) {
       throw error;
     }

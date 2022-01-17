@@ -2,7 +2,9 @@ import { DbOptions, MongoClientOptions } from 'mongodb';
 
 export type MogOptions = {
   url: string;
+  /** Name of the DB to use */
   db: string;
+  /** Name of the connecting application, shown in the MongoDB logs and profiler */
   appName?: string;
   /** Default collection that is used for all operations. If not set, a collection must be passed with every operation */
   defaultCollection?: string;

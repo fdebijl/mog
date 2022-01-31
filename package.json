@@ -35,7 +35,7 @@
     "prepublishOnly": "npm run lint && npm test"
   },
   "dependencies": {
-    "@fdebijl/clog": "1.105.0",
+    "@fdebijl/clog": "1.110.0",
     "mongodb": "4.3.1"
   },
   "devDependencies": {

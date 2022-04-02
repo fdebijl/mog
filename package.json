@@ -19,9 +19,6 @@
     "url": "https://github.com/fdebijl/mog/issues"
   },
   "homepage": "https://github.com/fdebijl/mog#readme",
-  "release": {
-    "analyzeCommits": "semantic-release-conventional-commits"
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
